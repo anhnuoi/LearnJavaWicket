@@ -13,3 +13,47 @@ Lợi ích sử dụng wicket framework so với other:
 . Wicket là 100% opensource
 . Wicket chỉ là JaVa với good old HTML
 . với Wicket chúng ta dễ dàng sử dụng JAvaBeans và POJO.
+
+package org.wicketTutorial;
+
+import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.WebPage;
+
+public class HomePage extends WebPage {
+    public HomePage() {
+	   add(new Label("helloMessage", "Hello WicketWorld!"));
+    }
+}
+
+ Method add(Component component) is inherited from ancestor class org.apache.wicket.MarkupContainer and is used to add children components to a web page.
+ Class org.apache.wicket.markup.html.basic.Label is the simplest component shipped with Wicket. It just inserts a string (the second argument of its constructor) inside the corresponding HTML tag.
+ 
+
+Here is the HTML markup for HomePage (file HomePage.html):
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Apache Wicket HelloWorld</title>
+	</head>
+	<body>
+
+		<div wicket:id="helloMessage">
+		[Label's message goes here]
+		</div>
+	</body>
+</html>
+
+public class HomePage extends WebPage {
+	public HomePage(){
+		add(new Link<Void>("id"){
+			@Override
+			public void onClick() {
+                         //we redirect browser to another page.
+                         setResponsePage(AnotherPage.class);
+			}
+		});
+	}
+}
