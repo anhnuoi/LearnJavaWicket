@@ -1,0 +1,55 @@
+wicket:id  attach our component
+   <wicket:panel>
+      <!-- Your markup goes here -->    --> define area wich will be considered as markup source
+   </wicket:panel>
+
+In parent: 
+ <body>
+    This is parent body!
+    <wicket:child/>  --> define an area where can inject child
+ </body>
+In child: 
+ <body>
+    <wicket:extend>
+      This is child body!
+    </wicket:extend>
+ </body>
+ 
+In markup file (Fragment):
+    <html>
+   <body>
+    <div wicket:id="contentArea"></div>
+    <wicket:fragment wicket:id="formFrag">
+       <!-- Form markup goes here -->
+    </wicket:fragment>
+    <wicket:fragment wicket:id="messageFrag">
+       <!-- Message markup goes here -->
+    </wicket:fragment>
+   </body>
+   </html>
+In class file (Fragment):
+    Fragment fragment = new  Fragment ("contentArea", "formFrag", this);
+    add(fragment);
+ 
+    //form has been submitted
+    Fragment fragment = new  Fragment ("contentArea", "messageFrag", this);
+    replace(fragment);
+    
+ <wicket:head>  --> inject to header section of final page
+	<script type="text/javascript">
+	   function myPanelFunction(){
+	   }
+	</script>
+
+	<style>
+        .myPanelClass{
+	  	font-weight: bold;
+	  	color: red;
+	  }
+    </style>
+</wicket:head>
+<body>
+
+<wicket:enclosure>  --> hide decorating element when component is set unvisible
+    <label>Total amount: </label><span wicket:id="totalAmount"></span>  --> if totalAmount unvisible the label tag is unvisble too.
+</wicket:enclosure>
